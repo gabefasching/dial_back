@@ -1,4 +1,4 @@
-const router = require('express').Router();
+const router = require('express').Router()
 
 const Twitter = require('twitter')
 
@@ -11,19 +11,30 @@ const client = new Twitter({
 
 
 // gets pictures
-router.get('/pictures', async(req, req, next) => {
-    const ht = req.query.hashtag;
+router.get('/pictures', async(req, res, next) => {
+    // const ht = req.query.hashtags
+    const ht = '#retrogames'
+    // const pics = await client.get('trends/place.json', {
+    //   id : 1
+    //   // filter:images
+
+    // })
     const pics = await client.get('search/tweets.json', {
-      ht,
-      filter:images
+      // q :  '#' + ht + ' filter:images'
+      q : ht,
+      // filter:images
 
     })
-    res.send(pics);
-});
+    // res.send(pics['statuses']['retweeted_status']['entities']['media']['media_url_https'])
+    // res.send(client.get('trends/place.json'))
+    res.send(pics)
+    // res.send('ht')
+    // res.send(req.query)
+})
 
 //  gets pictures
- router.get('/', async(req, req, next) => {
-     res.send({ message: 'Ok api is working'});
- });
+ router.get('/', async(req, res, next) => {
+     res.send({ message: 'Ok api is working'})
+ })
 
 module.exports = router;
