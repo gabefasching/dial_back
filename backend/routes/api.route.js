@@ -15,10 +15,8 @@ router.get('/pictures', async(req, res, next) => {
     try {
         const ht = req.query.hashtag
         const pics = await client.get('search/tweets.json', {
-        //   q :  ht + ' filter:images'
-        // q : ht
-          q : "#retrogame filter:images",
-          // filter:images
+
+          q : "#nintendo64 filter:images",
     
         })
         res.send(pics)
@@ -27,21 +25,8 @@ router.get('/pictures', async(req, res, next) => {
         console.log(error.message)
         next(error)
     }
-    // const ht = '#retrogames'
-    // const pics = await client.get('trends/place.json', {
-    //   id : 1
-    //   // filter:images
-
-    // })
-    // res.send(pics['statuses']['retweeted_status']['entities']['media']['media_url_https'])
-    // res.send(client.get('trends/place.json'))
-    // res.send(pics)
-    // res.send('ht')
+  
 })
 
-//  gets pictures
-//  router.get('/', async(req, res, next) => {
-//      res.send({ message: 'Ok api is working'})
-//  })
 
 module.exports = router;
